@@ -1,0 +1,73 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+
+public class stoken extends JFrame implements ActionListener
+{
+    static JFrame f;
+    static int sume,sumo;
+    static stoken st;
+    static String res1;
+    static String res2;
+    static JTextField t1,t2,t3;
+    static JButton b;
+    stoken()
+    {
+        res1 = res2 = "";
+        sume = sumo = 0;
+    }
+    public static void main(String[] args) 
+    {  
+        st = new stoken();
+        f = new JFrame("stoken");
+        b = new JButton("do");
+        t1 = new JTextField();
+        t3 = new JTextField();
+        t2 = new JTextField();
+        t1.setBounds(30,50,100,50);
+        t2.setBounds(30,110,100,50);
+        t3.setBounds(30,240,100,50);
+        b.setBounds(30,350,50,50);
+        f.setSize(600,600);
+        f.add(b);
+        f.add(t1);
+        f.add(t2);
+        f.add(t3);
+        b.addActionListener(st);
+        t2.setEditable(false);
+        f.setLayout(null);
+        f.setVisible(true);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public void actionPerformed(ActionEvent ae)
+    {
+        if(ae.getSource() == b)
+        {
+            int i=0;
+            int a[] = new int[20];
+            String x = t1.getText();
+            StringTokenizer s = new StringTokenizer(x,",");
+            while(s.hasMoreTokens())
+            {
+                a[i] = Integer.parseInt(s.nextToken());
+                i++;
+            }
+            for(int j=0;j<i;j++)
+                {
+                    if(a[j]%2 == 0)
+                    {
+                        sume += a[j];
+                    }
+                    else
+                    {
+                        sumo += a[j];
+                    }
+                }
+            res1 = Integer.toString(sume);
+            res2 = Integer.toString(sumo);
+            t2.setText(res1);
+            t3.setText(res2);
+        }
+    }
+}
